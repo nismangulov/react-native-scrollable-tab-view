@@ -28,7 +28,7 @@ const ScrollableTabView = React.createClass({
   },
 
   propTypes: {
-    tabBarPosition: PropTypes.oneOf(['top', 'bottom', 'overlayTop', 'overlayBottom', ]),
+    tabBarPosition: PropTypes.oneOf(['top', 'bottom', 'overlayTop', 'overlayBottom', 'right', 'left' ]),
     initialPage: PropTypes.number,
     page: PropTypes.number,
     onChangeTab: PropTypes.func,
@@ -60,6 +60,7 @@ const ScrollableTabView = React.createClass({
       currentPage: this.props.initialPage,
       scrollValue: new Animated.Value(this.props.initialPage),
       containerWidth: Dimensions.get('window').width,
+      containerHeight: Dimensions.get('window').height,
       sceneKeys: this.newSceneKeys({ currentPage: this.props.initialPage, }),
     };
   },
@@ -231,13 +232,19 @@ const ScrollableTabView = React.createClass({
 
   render() {
     let overlayTabs = (this.props.tabBarPosition === 'overlayTop' || this.props.tabBarPosition === 'overlayBottom');
+    let verticalTabs = (this.props.tabBarPosition === 'left' || this.props.tabBarPosition === 'right');
     let tabBarProps = {
       goToPage: this.goToPage,
       tabs: this._children().map((child) => child.props.tabLabel),
       activeTab: this.state.currentPage,
+      tabBarPosition: this.props.tabBarPosition,
       scrollValue: this.state.scrollValue,
       containerWidth: this.state.containerWidth,
+      containerHeight: this.state.containerHeight,
     };
+    let containerStyles = {
+      flexDirection: (verticalTabs) ? "row" : "column",
+    }
 
     if (this.props.tabBarBackgroundColor) {
       tabBarProps.backgroundColor = this.props.tabBarBackgroundColor;
@@ -254,19 +261,35 @@ const ScrollableTabView = React.createClass({
     if (this.props.tabBarUnderlineStyle) {
       tabBarProps.underlineStyle = this.props.tabBarUnderlineStyle;
     }
+    tabBarProps.style = {
+      height: 50
+    }
     if (overlayTabs) {
       tabBarProps.style = {
         position: 'absolute',
         left: 0,
         right: 0,
+        height: 50,
         [this.props.tabBarPosition === 'overlayTop' ? 'top' : 'bottom']: 0,
       };
     }
+    tabBarProps.verticalTabs = verticalTabs;
+    if (verticalTabs) {
+      tabBarProps.style = {
+        flexDirection: 'column',
+        alignSelf: (this.props.tabBarPosition === 'right') ? "flex-start" : "flex-end",
+        borderRightWidth: (this.props.tabBarPosition === 'right') ? 0 : 1,
+        borderLeftWidth: (this.props.tabBarPosition === 'left') ? 0 : 1,
+        borderWidth: 0
+      };
+    }
 
-    return <View style={[styles.container, this.props.style, ]} onLayout={this._handleLayout}>
-      {this.props.tabBarPosition === 'top' && this.renderTabBar(tabBarProps)}
+
+
+    return <View style={[styles.container, containerStyles, this.props.style, ]} onLayout={this._handleLayout}>
+      {(this.props.tabBarPosition === 'top' || this.props.tabBarPosition === 'left') && this.renderTabBar(tabBarProps)}
       {this.renderScrollableContent()}
-      {(this.props.tabBarPosition === 'bottom' || overlayTabs) && this.renderTabBar(tabBarProps)}
+      {(this.props.tabBarPosition === 'bottom' || overlayTabs || this.props.tabBarPosition === 'right') && this.renderTabBar(tabBarProps)}
     </View>;
   },
 });
