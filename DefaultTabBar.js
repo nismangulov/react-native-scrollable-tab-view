@@ -52,7 +52,7 @@ const DefaultTabBar = React.createClass({
     };
 
     return <Button
-      style={{flex: 1, }}
+      style={styles.flexOne}
       key={name}
       accessible={true}
       accessibilityLabel={name}
@@ -109,6 +109,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingBottom: 10,
     paddingHorizontal: 10,
+  },
+  flexOne: {
+    flex: 1,
   },
   tabs: {
     flexDirection: 'row',
