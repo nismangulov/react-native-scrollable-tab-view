@@ -10,29 +10,6 @@ const {
 const Button = require('./Button');
 
 const DefaultTabBar = React.createClass({
-  propTypes: {
-    goToPage: PropTypes.func,
-    activeTab: PropTypes.number,
-    tabs: PropTypes.array,
-    backgroundColor: PropTypes.string,
-    activeTextColor: PropTypes.string,
-    tabBarPosition: PropTypes.string,
-    inactiveTextColor: PropTypes.string,
-    containerHeight: PropTypes.number,
-    textStyle: Text.propTypes.style,
-    tabStyle: View.propTypes.style,
-    renderTab: PropTypes.func,
-    underlineStyle: View.propTypes.style,
-  },
-
-  getDefaultProps() {
-    return {
-      activeTextColor: 'navy',
-      inactiveTextColor: 'black',
-      backgroundColor: null,
-    };
-  },
-
   renderTabOption(name, page) {
   },
 
@@ -102,6 +79,27 @@ const DefaultTabBar = React.createClass({
     );
   },
 });
+
+DefaultTabBar.propTypes = {
+  goToPage: PropTypes.func,
+  activeTab: PropTypes.number,
+  tabs: PropTypes.array,
+  backgroundColor: PropTypes.string,
+  activeTextColor: PropTypes.string,
+  tabBarPosition: PropTypes.string,
+  inactiveTextColor: PropTypes.string,
+  containerHeight: PropTypes.number,
+  textStyle: Text.propTypes.style,
+  tabStyle: View.propTypes.style,
+  renderTab: PropTypes.func,
+  underlineStyle: View.propTypes.style,
+};
+
+DefaultTabBar.defaultProps = {
+  activeTextColor: 'navy',
+  inactiveTextColor: 'black',
+  backgroundColor: null,
+};
 
 const styles = StyleSheet.create({
   tab: {

@@ -27,34 +27,6 @@ const ScrollableTabView = React.createClass({
     ScrollableTabBar,
   },
 
-  propTypes: {
-    tabBarPosition: PropTypes.oneOf(['top', 'bottom', 'overlayTop', 'overlayBottom', 'right', 'left' ]),
-    initialPage: PropTypes.number,
-    page: PropTypes.number,
-    onChangeTab: PropTypes.func,
-    onScroll: PropTypes.func,
-    renderTabBar: PropTypes.any,
-    style: View.propTypes.style,
-    contentProps: PropTypes.object,
-    scrollWithoutAnimation: PropTypes.bool,
-    locked: PropTypes.bool,
-    prerenderingSiblingsNumber: PropTypes.number,
-  },
-
-  getDefaultProps() {
-    return {
-      tabBarPosition: 'top',
-      initialPage: 0,
-      page: -1,
-      onChangeTab: () => {},
-      onScroll: () => {},
-      contentProps: {},
-      scrollWithoutAnimation: false,
-      locked: false,
-      prerenderingSiblingsNumber: 0,
-    };
-  },
-
   getInitialState() {
     const width = Dimensions.get('window').width;
     return {
@@ -298,6 +270,32 @@ const ScrollableTabView = React.createClass({
     </View>;
   },
 });
+
+ScrollableTabView.propTypes = {
+  tabBarPosition: PropTypes.oneOf(['top', 'bottom', 'overlayTop', 'overlayBottom', 'right', 'left' ]),
+  initialPage: PropTypes.number,
+  page: PropTypes.number,
+  onChangeTab: PropTypes.func,
+  onScroll: PropTypes.func,
+  renderTabBar: PropTypes.any,
+  style: View.propTypes.style,
+  contentProps: PropTypes.object,
+  scrollWithoutAnimation: PropTypes.bool,
+  locked: PropTypes.bool,
+  prerenderingSiblingsNumber: PropTypes.number,
+};
+
+ScrollableTabView.defaultProps = {
+  tabBarPosition: 'top',
+  initialPage: 0,
+  page: -1,
+  onChangeTab: () => {},
+  onScroll: () => {},
+  contentProps: {},
+  scrollWithoutAnimation: false,
+  locked: false,
+  prerenderingSiblingsNumber: 0,
+};
 
 module.exports = ScrollableTabView;
 
