@@ -12,10 +12,40 @@ const {
   I18nManager
 } = ReactNative;
 const Button = require('./Button');
+const createReactClass = require('create-react-class');
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
-const ScrollableTabBar = React.createClass({
+const ScrollableTabBar = createReactClass({
+  propTypes: {
+    goToPage: PropTypes.func,
+    activeTab: PropTypes.number,
+    tabs: PropTypes.array,
+    backgroundColor: PropTypes.string,
+    activeTextColor: PropTypes.string,
+    inactiveTextColor: PropTypes.string,
+    scrollOffset: PropTypes.number,
+    style: View.propTypes.style,
+    tabStyle: View.propTypes.style,
+    tabsContainerStyle: View.propTypes.style,
+    textStyle: Text.propTypes.style,
+    renderTab: PropTypes.func,
+    underlineStyle: View.propTypes.style,
+    onScroll:PropTypes.func,
+  },
+
+  getDefaultProps() {
+    return {
+      scrollOffset: 52,
+      activeTextColor: 'navy',
+      inactiveTextColor: 'black',
+      backgroundColor: null,
+      style: {},
+      tabStyle: {},
+      tabsContainerStyle: {},
+      underlineStyle: {},
+    };
+  },
 
   getInitialState() {
     this._tabsMeasurements = [];
@@ -189,34 +219,6 @@ const ScrollableTabBar = React.createClass({
     this.updateView({value: this.props.scrollValue._value, });
   },
 });
-
-ScrollableTabBar.propTypes = {
-  goToPage: PropTypes.func,
-  activeTab: PropTypes.number,
-  tabs: PropTypes.array,
-  backgroundColor: PropTypes.string,
-  activeTextColor: PropTypes.string,
-  inactiveTextColor: PropTypes.string,
-  scrollOffset: PropTypes.number,
-  style: View.propTypes.style,
-  tabStyle: View.propTypes.style,
-  tabsContainerStyle: View.propTypes.style,
-  textStyle: Text.propTypes.style,
-  renderTab: PropTypes.func,
-  underlineStyle: View.propTypes.style,
-  onScroll:PropTypes.func,
-};
-
-ScrollableTabBar.defaultProps = {
-  scrollOffset: 52,
-  activeTextColor: 'navy',
-  inactiveTextColor: 'black',
-  backgroundColor: null,
-  style: {},
-  tabStyle: {},
-  tabsContainerStyle: {},
-  underlineStyle: {},
-};
 
 module.exports = ScrollableTabBar;
 

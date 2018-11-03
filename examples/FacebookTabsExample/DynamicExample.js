@@ -5,8 +5,9 @@ import {
 } from 'react-native';
 import TimerMixin from 'react-timer-mixin';
 import ScrollableTabView, { ScrollableTabBar, } from 'react-native-scrollable-tab-view';
+const createReactClass = require('create-react-class');
 
-const Child = React.createClass({
+const Child = createReactClass({
   onEnter() {
     console.log('enter: ' + this.props.i); // eslint-disable-line no-console
   },
@@ -21,7 +22,7 @@ const Child = React.createClass({
   },
 });
 
-export default React.createClass({
+export default createReactClass({
   mixins: [TimerMixin, ],
   children: [],
 

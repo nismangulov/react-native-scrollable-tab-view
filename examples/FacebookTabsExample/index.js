@@ -12,8 +12,9 @@ import ScrollableTabsExample from './ScrollableTabsExample';
 import OverlayExample from './OverlayExample';
 import FacebookExample from './FacebookExample';
 import DynamicExample from './DynamicExample';
+const createReactClass = require('create-react-class');
 
-export default React.createClass({
+export default createReactClass({
   render() {
     return <Navigator
       style={{flex: 1, }}

@@ -2,10 +2,11 @@ import React from 'react';
 import {
   Text,
 } from 'react-native';
+const createReactClass = require('create-react-class');
 
 import ScrollableTabView, {DefaultTabBar, } from 'react-native-scrollable-tab-view';
 
-export default React.createClass({
+export default createReactClass({
   render() {
     return <ScrollableTabView
       style={{marginTop: 20, }}

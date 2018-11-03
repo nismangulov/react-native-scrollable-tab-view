@@ -7,9 +7,16 @@ import {
 } from 'react-native';
 const PropTypes = require('prop-types');
 import Icon from 'react-native-vector-icons/Ionicons';
+const createReactClass = require('create-react-class');
 
-const FacebookTabBar = React.createClass({
+const FacebookTabBar = createReactClass({
   tabIcons: [],
+
+  propTypes: {
+    goToPage: PropTypes.func,
+    activeTab: PropTypes.number,
+    tabs: PropTypes.array,
+  },
 
   componentDidMount() {
     this._listener = this.props.scrollValue.addListener(this.setAnimationValue);
@@ -49,12 +56,6 @@ const FacebookTabBar = React.createClass({
     </View>;
   },
 });
-
-FacebookTabBar.propTypes = {
-  goToPage: PropTypes.func,
-  activeTab: PropTypes.number,
-  tabs: PropTypes.array,
-};
 
 const styles = StyleSheet.create({
   tab: {

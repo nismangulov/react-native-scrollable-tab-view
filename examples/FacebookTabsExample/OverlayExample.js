@@ -3,6 +3,7 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
+const createReactClass = require('create-react-class');
 
 import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-view';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -10,7 +11,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 // Using tabBarPosition='overlayTop' or 'overlayBottom' lets the content show through a
 // semitransparent tab bar. Note that if you build a custom tab bar component, its outer container
 // must consume a 'style' prop (e.g. <View style={this.props.style}) to support this feature.
-export default React.createClass({
+export default createReactClass({
   render() {
     return <ScrollableTabView
       style={styles.container}
