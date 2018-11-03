@@ -1,6 +1,5 @@
 const React = require('react');
 const {
-  PropTypes,
   Component,
 } = React;
 const ReactNative = require('react-native');
@@ -15,6 +14,7 @@ const {
 } = ReactNative;
 const TimerMixin = require('react-timer-mixin');
 const createReactClass = require('create-react-class');
+const PropTypes = require('prop-types');
 
 const SceneComponent = require('./SceneComponent');
 const DefaultTabBar = require('./DefaultTabBar');
