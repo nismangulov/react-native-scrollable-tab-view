@@ -1,5 +1,6 @@
 const React = require('react');
 const ReactNative = require('react-native');
+const PropTypes = require('prop-types');
 const {
   StyleSheet,
   Text,
@@ -10,17 +11,17 @@ const Button = require('./Button');
 
 const DefaultTabBar = React.createClass({
   propTypes: {
-    goToPage: React.PropTypes.func,
-    activeTab: React.PropTypes.number,
-    tabs: React.PropTypes.array,
-    backgroundColor: React.PropTypes.string,
-    activeTextColor: React.PropTypes.string,
-    tabBarPosition: React.PropTypes.string,
-    inactiveTextColor: React.PropTypes.string,
-    containerHeight: React.PropTypes.number,
+    goToPage: PropTypes.func,
+    activeTab: PropTypes.number,
+    tabs: PropTypes.array,
+    backgroundColor: PropTypes.string,
+    activeTextColor: PropTypes.string,
+    tabBarPosition: PropTypes.string,
+    inactiveTextColor: PropTypes.string,
+    containerHeight: PropTypes.number,
     textStyle: Text.propTypes.style,
     tabStyle: View.propTypes.style,
-    renderTab: React.PropTypes.func,
+    renderTab: PropTypes.func,
     underlineStyle: View.propTypes.style,
   },
 
